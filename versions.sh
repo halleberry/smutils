@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 
 
-echo "v0.0.01 init microservice $(basename $(PWD))"
+echo "v0.0.01 init $(basename $(PWD)) microservice"
 
-echo "v0.0.02 create domain, model and view & init alembic for db migrations management."
+echo "v0.0.02 create domain, model and view; init alembic for db migrations management; create err.py, unit_of_work.py"
 
 echo "v0.0.03 create repository(model_kwargs): domain"
 

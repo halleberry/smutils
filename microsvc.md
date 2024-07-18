@@ -19,7 +19,34 @@
 
 ## v0.1.0 mission's input, data and output, as well as, setup and versioning (git)
 
+1. [create directory, readme, .gitignore, setup, requirements, entrypoint, virtualenv](#create-directory-readme-gitignore-setup-requirements-entrypoint-virtualenv)
+2. [save changes](#save-changes)
+3. [create version tag](#create-version-tag)
+
+
+### create directory, readme, .gitignore, setup, requirements, entrypoint, virtualenv
+
+
+### save changes 
+
+```shell
+#!/usr/bin/env sh
+
+git init && git add . &&  git commit -m "v0.1.0 init $(basename $(PWD)) microservice"
+
+```
+
+### create version tag 
+
+```shell
+#!/usr/bin/env sh
+
+git tag v0.1.0 -m "$(git rev-parse --short HEAD) $(date) $(git log -1 --pretty=%B)"
+
+```
+
 ## v0.2.0 oas's version, info, paths, servers and components' schemas
+
 
 ## v0.3.0 model, domain, view, unit_of_work and errs
 

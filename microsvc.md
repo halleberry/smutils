@@ -26,6 +26,8 @@
 
 ### create directory, readme, .gitignore, setup, requirements, entrypoint, virtualenv
 
+- [.gitignore](https://github.com/halleberry/smutils/blob/main/.gitignore)
+
 
 ### save changes 
 

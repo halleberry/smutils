@@ -28,26 +28,30 @@
 
 - [.gitignore](https://github.com/halleberry/smutils/blob/main/.gitignore)
 
-
-### save changes 
-
 ```shell
 #!/usr/bin/env sh
 
-git init && git add . &&  git commit -m "v0.1.0 init $(basename $(PWD)) microservice"
+git init
 
 ```
 
-### create version tag 
+
+### save changes & create version tag
 
 ```shell
 #!/usr/bin/env sh
 
+# save changes
+git add . &&  git commit -m "v0.1.0 init $(basename $(PWD)) microservice"
+
+# create version tag
 git tag v0.1.0 -m "$(git rev-parse --short HEAD) $(date) $(git log -1 --pretty=%B)"
 
 ```
 
+
 ## v0.2.0 oas's version, info, paths, servers and components' schemas
+
 
 
 ## v0.3.0 model, domain, view, unit_of_work and errs

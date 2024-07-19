@@ -1,0 +1,161 @@
+openapi: 3.0
+
+info:
+  title: MultiLanguageString
+  description: MultiLanguageStrings API management
+  version: 0.0.1
+
+servers:
+  - url: http://127.0.0.1:8020
+
+paths:
+  /multi_language_strings:
+    post:
+      summary: returns the newly created multi_language_string with it's id and language_tag.
+      operationId: save
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InputSchema'
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ViewSchema'
+
+    get:
+      summary: returns list of MultiLanguageStrings containing the given content string in the requested language_tag.
+      operationId: search
+      parameters:
+        - name: language_tag
+          in: query
+          required: false
+          schema:
+            type: string
+            default: en
+
+        - name: content
+          in: query
+          required: false
+          schema:
+            type: string
+
+        - name: parent
+          in: query
+          required: false
+          schema:
+            type: string
+
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ViewSchema'
+
+  /multi_language_strings/{uid}:
+    parameters:
+      - in: path
+        name: uid
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: language_tag
+        required: false
+        schema:
+          type: string
+          default: en
+    get:
+      summary: returns the MultiLanguageString in the requested language_tag.
+      operationId: show
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ViewSchema'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: update
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ViewSchema'
+
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InputSchema'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+components:
+  responses:
+    NotFound:
+      description: The specified resource was not found.
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Error'
+
+  schemas:
+    InputSchema:
+      type: object
+      properties:
+        content:
+          type: string
+        language_tag:
+          type: string
+
+    ViewSchema:
+      type: object
+      properties:
+        required:
+          - id
+          - language_tag
+        id:
+          type: string
+          format: UUID
+        language_tag:
+          type: string
+        content:
+          type: string
+        default_language_string:
+          type: string
+
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+      required:
+        - detail
+
+
+
+
+
+

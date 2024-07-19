@@ -1,0 +1,9 @@
+fastapi
+pydantic
+uvicorn
+requests
+sqlalchemy
+alembic
+langcodes
+python-ulid
+langid
